@@ -16,6 +16,7 @@ function editaRegistro(id) {
   $("#modalRegistro").modal("show");
   dados.forEach((item) => {
     if (item.id == id) {
+      $("#hdID").val(item.id);
       $("#txtNome").val(item.nome);
       $("#txtSobrenome").val(item.sobreNome);
       $("#txtDtNascimento").val(
@@ -59,6 +60,7 @@ $(function () {
   $("#btnSalvar").on("click", function () {
     // Evento click do botão salvar
     // Pegando valores das variáveis digitadas no modal.
+    let _id = $("#hdID").val();
     let nome = $("#txtNome").val();
     let sobreNome = $("#txtSobrenome").val();
     let dtNascimento = new Date($("#txtDtNascimento").val()).toLocaleDateString(
@@ -66,22 +68,35 @@ $(function () {
       { timeZone: "UTC" }
     );
     let formacao = $("#txtFormacao").val();
-    // Objeto para armazenar as informações
-    let registro = {};
-    // Atribuição das variáveis criadas para dentro do objeto
-    registro.nome = nome;
-    registro.sobreNome = sobreNome;
-    registro.dtNascimento = dtNascimento;
-    registro.formacao = formacao;
-    // Determinar o id
-    registro.id = dados.length + 1;
-    // Adicionando o registro criado
-    dados.push(registro);
+
+    if (!_id || _id == "0") {
+      // Objeto para armazenar as informações
+      let registro = {};
+      // Atribuição das variáveis criadas para dentro do objeto
+      registro.nome = nome;
+      registro.sobreNome = sobreNome;
+      registro.dtNascimento = dtNascimento;
+      registro.formacao = formacao;
+      // Determinar o id
+      registro.id = dados.length + 1;
+      // Adicionando o registro criado
+      dados.push(registro);
+    } else {
+      dados.forEach((item) => {
+        if (item.id == _id) {
+          item.nome = nome;
+          item.sobreNome = sobreNome;
+          item.dtNascimento = dtNascimento;
+          item.formacao = formacao;
+        }
+      });
+    }
     // Alerta depois de salvar
     alert("Registro salvo com sucesso!");
     // Esconder o modal depois do alerta
     $("#modalRegistro").modal("hide");
     // Limpeza dos campos para caso o modal seja acessado novamente não apareça os dados digitados anteriormente.
+    $("#hdID").val("0");
     $("#txtNome").val("");
     $("#txtSobrenome").val("");
     $("#txtDtNascimento").val("");
