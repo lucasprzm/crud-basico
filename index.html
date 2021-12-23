@@ -82,7 +82,51 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body">...</div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="">Nome</label>
+                  <input
+                    id="txtNome"
+                    type="text"
+                    class="form-control"
+                    placeholder="digite o nome..."
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="">Sobrenome</label>
+                <input
+                  id="txtSobrenome"
+                  type="text"
+                  class="form-control"
+                  placeholder="digite o sobrenome..."
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="">Data de Nascimento</label>
+                  <input
+                    id="txtDtNascimento"
+                    type="date"
+                    class="form-control"
+                  />
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="">Formação</label>
+                <input
+                  id="txtFormacao"
+                  type="text"
+                  class="form-control"
+                  placeholder="digite a formação..."
+                />
+              </div>
+            </div>
+          </div>
           <div class="modal-footer">
             <button
               type="button"
@@ -91,7 +135,9 @@
             >
               Fechar
             </button>
-            <button type="button" class="btn btn-primary">Salvar</button>
+            <button id="btnSalvar" type="button" class="btn btn-primary">
+              Salvar
+            </button>
           </div>
         </div>
       </div>
