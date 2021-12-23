@@ -7,30 +7,33 @@ function populaTabela() {
     $("#tblDados tbody").html("");
     dados.forEach((item) => {
       $("#tblDados tbody").append(`<tr>
-      <td>${item.ID}</td>
-      <td>${item.Nome}</td>
-      <td>${item.Sobrenome}</td>
-      <td>${item.DtNascimento}</td>
-      <td>${item.Formacao}</td>
+      <td>${item.id}</td>
+      <td>${item.nome}</td>
+      <td>${item.sobreNome}</td>
+      <td>${item.dtNascimento}</td>
+      <td>${item.formacao}</td>
       </tr>`);
     });
   }
 }
 
 $(function () {
-  dados = JSON.parse(localStorage.getItem("__dados__"));
+  //dados = JSON.parse(localStorage.getItem("__dados__"));
+  console.log(dados);
   if (dados) {
     populaTabela();
   }
-  $("#btnSalvar").click(() => {
+
+  $("#btnSalvar").on("click", function () {
     // Evento click do botão salvar
     // Pegando valores das variáveis digitadas no modal.
-    let nome = $("#txtNome").value();
-    let sobreNome = $("#txtSobrenome").value();
-    let dtNascimento = new Date(
-      $("#txtDtNascimento").value()
-    ).toLocaleDateString("pt-br", { timeZone: "UTC" });
-    let formacao = $("#txtFormacao").value();
+    let nome = $("#txtNome").val();
+    let sobreNome = $("#txtSobrenome").val();
+    let dtNascimento = new Date($("#txtDtNascimento").val()).toLocaleDateString(
+      "pt-br",
+      { timeZone: "UTC" }
+    );
+    let formacao = $("#txtFormacao").val();
     // Objeto para armazenar as informações
     let registro = {};
     // Atribuição das variáveis criadas para dentro do objeto
@@ -47,10 +50,10 @@ $(function () {
     // Esconder o modal depois do alerta
     $("#modalRegistro").modal("hide");
     // Limpeza dos campos para caso o modal seja acessado novamente não apareça os dados digitados anteriormente.
-    $("#txtNome").value("");
-    $("#txtSobrenome").value("");
-    $("#txtDtNascimento").value("");
-    $("#txtFormacao").value("");
+    $("#txtNome").val("");
+    $("#txtSobrenome").val("");
+    $("#txtDtNascimento").val("");
+    $("#txtFormacao").val("");
     // Chamando a função novamente para criar a tabela.
     populaTabela();
   });
