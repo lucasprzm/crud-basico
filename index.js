@@ -2,6 +2,7 @@ var dados = [];
 
 function populaTabela() {
   if (Array.isArray(dados)) {
+    localStorage.setItem("__dados__", JSON.stringify(dados));
     // usando jquery para limpar a tabela
     $("#tblDados tbody").html("");
     dados.forEach((item) => {
@@ -41,7 +42,16 @@ $(function () {
     registro.id = dados.length + 1;
     // Adicionando o registro criado
     dados.push(registro);
-
+    // Alerta depois de salvar
+    alert("Registro salvo com sucesso!");
+    // Esconder o modal depois do alerta
+    $("#modalRegistro").modal("hide");
+    // Limpeza dos campos para caso o modal seja acessado novamente não apareça os dados digitados anteriormente.
+    $("#txtNome").value("");
+    $("#txtSobrenome").value("");
+    $("#txtDtNascimento").value("");
+    $("#txtFormacao").value("");
+    // Chamando a função novamente para criar a tabela.
     populaTabela();
   });
 });
