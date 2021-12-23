@@ -12,6 +12,24 @@ function apagaRegistro(id) {
   }
 }
 
+function editaRegistro(id) {
+  $("#modalRegistro").modal("show");
+  dados.forEach((item) => {
+    if (item.id == id) {
+      $("#txtNome").val(item.nome);
+      $("#txtSobrenome").val(item.sobreNome);
+      $("#txtDtNascimento").val(
+        item.dtNascimento.substr(6, 4) +
+          "-" +
+          item.dtNascimento.substr(3, 2) +
+          "-" +
+          item.dtNascimento.substr(0, 2)
+      );
+      $("#txtFormacao").val(item.formacao);
+    }
+  });
+}
+
 function populaTabela() {
   if (Array.isArray(dados)) {
     localStorage.setItem("__dados__", JSON.stringify(dados));
@@ -33,7 +51,7 @@ function populaTabela() {
 
 $(function () {
   //dados = JSON.parse(localStorage.getItem("__dados__"));
-  console.log(dados);
+  //console.log(dados);
   if (dados) {
     populaTabela();
   }
