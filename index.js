@@ -1,5 +1,17 @@
 var dados = [];
 
+function apagaRegistro(id) {
+  let _confirm = confirm("Deseja realmente excluir esse registro?");
+  if (_confirm) {
+    for (let i = 0; i < dados.length; i++) {
+      if (dados[i].id == id) {
+        dados.splice(i, 1);
+      }
+    }
+    populaTabela();
+  }
+}
+
 function populaTabela() {
   if (Array.isArray(dados)) {
     localStorage.setItem("__dados__", JSON.stringify(dados));
@@ -12,8 +24,8 @@ function populaTabela() {
       <td>${item.sobreNome}</td>
       <td>${item.dtNascimento}</td>
       <td>${item.formacao}</td>
-      <td><button type="button" class="btn btn-primary"><i class="far fa-edit"></i></button></td>
-      <td><button type="button" class="btn btn-danger"><i class="fas fa-trash"></i></button></td>
+      <td><button type="button" class="btn btn-primary" onclick="editaRegistro(${item.id})"><i class="far fa-edit"></i></button></td>
+      <td><button type="button" class="btn btn-danger" onclick="apagaRegistro(${item.id})"><i class="fas fa-trash"></i></button></td>
       </tr>`);
     });
   }
