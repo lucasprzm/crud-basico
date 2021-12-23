@@ -21,4 +21,27 @@ $(function () {
   if (dados) {
     populaTabela();
   }
+  $("#btnSalvar").click(() => {
+    // Evento click do botão salvar
+    // Pegando valores das variáveis digitadas no modal.
+    let nome = $("#txtNome").value();
+    let sobreNome = $("#txtSobrenome").value();
+    let dtNascimento = new Date(
+      $("#txtDtNascimento").value()
+    ).toLocaleDateString("pt-br", { timeZone: "UTC" });
+    let formacao = $("#txtFormacao").value();
+    // Objeto para armazenar as informações
+    let registro = {};
+    // Atribuição das variáveis criadas para dentro do objeto
+    registro.nome = nome;
+    registro.sobreNome = sobreNome;
+    registro.dtNascimento = dtNascimento;
+    registro.formacao = formacao;
+    // Determinar o id
+    registro.id = dados.length + 1;
+    // Adicionando o registro criado
+    dados.push(registro);
+
+    populaTabela();
+  });
 });
