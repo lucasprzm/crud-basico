@@ -1,5 +1,7 @@
 # CRUD Básico
 
+https://lucasprzm.github.io/crud-basico/
+
 #### Criado utilizando HTML, Bootstrap, Font Awesome, JavaScript e jQuery
 
 - Criado a partir da sequência de 2 vídeos do canal do YouTube do Paulo Augusto Ponciano
